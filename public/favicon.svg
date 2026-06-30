@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <!-- CultoGestor — favicon. Autor: Eudes S. Aguiar — ProezaTech — www.proezatech.com -->
+    <rect width="32" height="32" rx="7" fill="#13294B"/>
+    <path d="M12 11.5l8.5-2.4v8.2a2 2 0 0 1-1.45 1.92l-1.07.3a1.45 1.45 0 1 1-.8-2.8l1.86-.53a1.5 1.5 0 0 0 1.05-1.43V8.3L12 10.7v8.5a1.45 1.45 0 1 1-.8-2.8l1.86-.53A1.5 1.5 0 0 0 14 14.04V11.5z"
+          fill="none" stroke="#D9A441" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

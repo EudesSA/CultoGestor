@@ -115,4 +115,15 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Destinatário do formulário de contato (site público)
+    |--------------------------------------------------------------------------
+    | Para onde vão as mensagens enviadas em /contato. Se não definido,
+    | usa o endereço "from" global.
+    |
+    | @author Eudes S. Aguiar — ProezaTech — www.proezatech.com
+    */
+    'contato_to' => env('CONTATO_EMAIL'),
+
 ];

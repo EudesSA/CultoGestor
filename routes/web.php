@@ -7,13 +7,28 @@ use App\Http\Controllers\DownloadArquivoController;
 use App\Http\Controllers\DownloadLiturgiaController;
 use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\SiteController;
 use App\Livewire\ModoCulto;
 use App\Livewire\PortalCantor;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+|--------------------------------------------------------------------------
+| Site público institucional
+|--------------------------------------------------------------------------
+| Páginas públicas, fora de qualquer middleware/grupo do painel Filament.
+| O painel administrativo continua intacto em /admin.
+|
+| @author Eudes S. Aguiar — ProezaTech — www.proezatech.com
+*/
+Route::get('/', [SiteController::class, 'index'])->name('site.home');
+Route::get('/funcionalidades', [SiteController::class, 'funcionalidades'])->name('site.funcionalidades');
+Route::get('/como-funciona', [SiteController::class, 'comoFunciona'])->name('site.como-funciona');
+Route::get('/sobre', [SiteController::class, 'sobre'])->name('site.sobre');
+Route::get('/faq', [SiteController::class, 'faq'])->name('site.faq');
+Route::get('/contato', [SiteController::class, 'contato'])->name('site.contato');
+Route::post('/contato', [SiteController::class, 'enviarContato'])->name('site.contato.enviar');
+Route::get('/sitemap.xml', [SiteController::class, 'sitemap'])->name('site.sitemap');
 
 Route::get('/cantor/{token}', PortalCantor::class)->name('cantor.portal');
 

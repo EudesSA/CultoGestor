@@ -1,6 +1,177 @@
+/* Fonte serifada dos títulos (precisa ser o 1º @import, conforme spec CSS) */
+@import url('https://fonts.bunny.net/css?family=fraunces:600,700');
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 @import '../../../../vendor/guava/calendar/resources/css/theme.css';
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 @source '../../../../vendor/guava/calendar/resources/**/*';
+
+/*
+ |--------------------------------------------------------------------------
+ | Identidade visual CultoGestor
+ |--------------------------------------------------------------------------
+ | Sidebar azul-marinho (#13294B), acento dourado (#D9A441) no item ativo e
+ | nos primários (este já vem da cor `primary` do AdminPanelProvider),
+ | títulos de página em Fraunces (serifada) e conteúdo em fundo creme.
+ |
+ | As classes-alvo foram conferidas no CSS-fonte do Filament 5 instalado em
+ | vendor/filament/filament/resources/css/components/{sidebar,header}.css.
+ |
+ | @author Eudes S. Aguiar — ProezaTech — www.proezatech.com
+ | @link    https://www.proezatech.com
+ */
+
+/* Fonte serifada nos títulos de página */
+.fi-header-heading {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.01em;
+}
+
+/* Conteúdo em fundo creme (mantém legibilidade; cards continuam claros) */
+.fi-main-ctn,
+.fi-main {
+    background-color: #faf7f0;
+}
+
+/* --- Sidebar azul-marinho --- */
+/* No desktop o Filament usa lg:bg-transparent; por isso o override com !important. */
+.fi-sidebar,
+.fi-sidebar.fi-sidebar-open {
+    background-color: #13294b;
+}
+@media (min-width: 1024px) {
+    .fi-sidebar {
+        background-color: #13294b !important;
+    }
+}
+
+/* Textos e ícones da sidebar em tons claros sobre o marinho */
+.fi-sidebar-item-label,
+.fi-sidebar-group-label,
+.fi-sidebar-database-notifications-btn-label {
+    color: #e5eaf2;
+}
+.fi-sidebar-item-btn > .fi-icon,
+.fi-sidebar-group-btn .fi-icon {
+    color: #9fb3d1;
+}
+
+/* Hover de item com link */
+.fi-sidebar-item-has-url > .fi-sidebar-item-btn:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Item ATIVO: fundo dourado translúcido + texto/ícone dourados */
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: rgba(217, 164, 65, 0.16);
+}
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn > .fi-sidebar-item-label,
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn > .fi-icon {
+    color: #d9a441;
+}
+
+/* Marca/logo legível sobre o marinho */
+.fi-sidebar-header .fi-logo {
+    color: #ffffff;
+}
+
+/*
+ |--------------------------------------------------------------------------
+ | Tela de login / autenticação (simple pages)
+ |--------------------------------------------------------------------------
+ | Fundo azul-marinho com brilho dourado, card creme com acento dourado no
+ | topo e marca (logo + nome em Fraunces) injetada via render hook.
+ */
+
+/* Fundo imersivo marinho com halo dourado */
+.fi-simple-layout {
+    min-height: 100vh;
+    background:
+        radial-gradient(900px 500px at 50% -15%, rgba(217, 164, 65, 0.20), transparent 60%),
+        linear-gradient(165deg, #0d1c33 0%, #13294b 55%, #1c3a68 100%);
+}
+
+/* Card de login: creme, cantos suaves, sombra e borda dourada discreta */
+.fi-simple-main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    background-color: #fffdf8;
+    border: 1px solid rgba(217, 164, 65, 0.25);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+}
+.dark .fi-simple-main {
+    background-color: #0f2240;
+    border-color: rgba(217, 164, 65, 0.30);
+}
+
+/* Faixa dourada no topo do card */
+.fi-simple-main::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, #d9a441, #f0c97a, #d9a441);
+}
+
+/* Esconde o logo-texto padrão (substituído pela marca do render hook) */
+.fi-simple-header .fi-logo {
+    display: none;
+}
+
+/* Título da página (Entrar) em Fraunces */
+.fi-simple-header-heading {
+    font-family: 'Fraunces', Georgia, serif;
+    color: #13294b;
+    letter-spacing: -0.01em;
+}
+.dark .fi-simple-header-heading {
+    color: #f5e9cf;
+}
+
+/* --- Bloco de marca (resources/views/filament/auth/login-brand.blade.php) --- */
+.cg-auth-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.cg-auth-logo {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background-color: #13294b;
+    box-shadow: 0 12px 28px -10px rgba(19, 41, 75, 0.65),
+                0 0 0 4px rgba(217, 164, 65, 0.16);
+}
+.cg-auth-logo svg {
+    width: 38px;
+    height: 38px;
+}
+
+.cg-auth-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #13294b;
+    letter-spacing: -0.01em;
+}
+.dark .cg-auth-name {
+    color: #f5e9cf;
+}
+
+.cg-auth-tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #9a7b3c;
+}
+.dark .cg-auth-tag {
+    color: #d9a441;
+}

@@ -12,6 +12,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Guava\Calendar\CalendarPlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -32,8 +33,13 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->brandName('Culto Gestor')
+            // Marca personalizada no topo das páginas de autenticação (login/registro/reset).
+            ->renderHook(
+                PanelsRenderHook::SIMPLE_PAGE_START,
+                fn (): string => view('filament.auth.login-brand')->render(),
+            )
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::hex('#D9A441'),
                 'danger' => Color::Red,
                 'success' => Color::Green,
                 'warning' => Color::Amber,

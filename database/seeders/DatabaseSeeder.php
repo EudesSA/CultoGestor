@@ -63,5 +63,8 @@ class DatabaseSeeder extends Seeder
         // Ordem de setup: migrate → shield:generate --all → db:seed.
         // O seeder é idempotente e só aplica permissões que já existem.
         $this->call(ShieldRolePermissionSeeder::class);
+
+        // Banco de Hinos (Novo Hinário Adventista) — idempotente.
+        $this->call(HinosSeeder::class);
     }
 }
